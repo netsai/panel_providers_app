@@ -1,0 +1,52 @@
+-----insert data ------
+
+insert into panel_providers (code)
+VALUES ('ipanel') ,('multi_panels'),('super_panels')
+
+--select * from panel_providers
+
+
+insert into target_groups(name,panel_provider_id)
+VALUES('schools',1),('homes',2),('hospitals',2),('factories',3)
+
+--select * from target_groups
+
+insert into target_groups(name,parent_id)
+VALUES('A',1),('large',3),('national',4),('red',2)
+
+--select * from target_groups
+
+insert into target_groups(name,parent_id)
+VALUES('B',5),('medium',6),('regional',7),('blue',8)
+
+insert into target_groups(name,parent_id)
+VALUES('C',9),('small',10),('town',11),('green',12)
+
+
+insert into countries (country_code,panel_provider_id)
+VALUES ('South Africa',1) ,('Zimbabwe',2),('England',3)
+
+--select * from countries
+
+insert into locations(name)
+VALUES ('Harare'),('Mutare'),('Bulawayo'),('Chegutu'),('Gweru'),
+('Chinhoyi'),('Stellenbosch'),('Robertson'),('Worcester'),('Somerset West'),
+('Randburg'),('London'),('Aldgate'),('Oxford'),('Leeds'),
+('Bath'),('Cambridge'),('Leicester'),('Boston'),('Salisbury')
+
+--select * from locations
+
+--select * from target_market_groups   SOUTHERN AFRICA ,
+--EUROPE,AFRICA,FAR EAST
+
+insert into location_groups(name,country_id,panel_provider_id)
+values('SOUTHERN AFRICA',1,1),('EUROPE',3,3),('AFRICA',2,2),('FAR EAST',3,3)
+--delete from location_groups
+
+--select * from location_groups
+
+insert into location_location_groups(location_id,location_group_id)
+values(1,3),(2,3),(3,3),(4,3),(5,3),(6,3),
+(7,1),(8,1),(9,1),(10,1),(11,1),
+(12,2),(13,2),(14,2),(15,2),(16,2),(17,2),(18,2),
+(19,4),(20,4)
