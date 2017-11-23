@@ -1,14 +1,8 @@
 == README
 
-* Ruby version:  2.3.0
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-* Rails version 4.2.0
-
-* Database creation :  See db/database table create script.sql
-
-* Database initialization: See db/insert data script.sql
-
-*Requests
 
 Request #1
 .../location/countries
@@ -18,3 +12,10 @@ Request #2
 
 Request #3
 .../panel_provider/evaluate_prices
+
+*Database Postgresql database script 
+
+* Database initialization :  See the data insert script
+
+* Deployment instructions
+
