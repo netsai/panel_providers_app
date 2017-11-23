@@ -8,3 +8,13 @@
 
 * Database initialization: See db/insert data script.sql
 
+*Requests
+
+Request #1
+.../location/countries
+
+Request #2
+.../target_group/countries
+
+Request #3
+.../panel_provider/evaluate_prices
