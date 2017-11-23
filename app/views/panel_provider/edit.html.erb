@@ -1,0 +1,9 @@
+<h3>Add a new Panel Provider</h3>
+<% form_for :panel_provider, :url => { :action => 'update', :id => @panel_provider.id } do |f|%>
+    <table >
+      <tr>
+        <td>Code</td><td><%= f.text_field :code %></td>
+      </tr>
+    </table>
+    <button>Update</button>
+<% end %>

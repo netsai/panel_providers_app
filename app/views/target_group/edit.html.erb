@@ -1,0 +1,18 @@
+<h3>Edit Target Group</h3>
+<% form_for :target_group, :url => { :action => 'update', :id => @target_group.id } do |f|%>
+    <table >
+      <tr>
+        <td>Name</td><td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Secret Code</td><td><%= f.text_field :secret_code %></td>
+      </tr>
+      <tr>
+        <td>Parent Target Group</td><td><%= f.select :parent_id,@parent_target_groups, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+      <tr>
+        <td>Panel Provider</td><td><%= f.select :panel_provider_id,@panel_providers, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+    </table>
+    <button>Update</button>
+<% end %>

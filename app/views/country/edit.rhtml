@@ -1,0 +1,12 @@
+<h3>Edit Country</h3>
+<% form_for :country, :url => { :action => 'update', :id => @country.id } do |f|%>
+    <table >
+      <tr>
+        <td>Country Code</td><td><%= f.text_field :country_code %></td>
+      </tr>
+      <tr>
+        <td>Panel Provider</td><td><%= f.select :panel_provider_id,@panel_providers, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+    </table>
+    <button>Update</button>
+<% end %>

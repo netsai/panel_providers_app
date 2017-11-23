@@ -1,0 +1,20 @@
+<div >
+  <table class="table table-bordered table-striped">
+
+    <tr>
+      <th>Panel Provider</th>
+    </tr>
+    <% if @panel_providers && @panel_providers.count == 0 %>
+        <tr>
+          <td colspan="7">There are no panel_providers</td>
+        </tr>
+    <% else
+         @panel_providers.each do |panel_provider| %>
+            <tr>
+              <td><%= panel_provider.panel_provider %></td>
+            </tr>
+        <% end
+    end %>
+
+  </table>
+</div>

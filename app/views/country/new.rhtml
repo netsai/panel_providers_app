@@ -1,0 +1,13 @@
+<h3>Add a new Country</h3>
+<% form_for :country, :url => { :action => 'create' } do |f|%>
+    <table >
+      <tr>
+        <td>Panel Provider</td><td><%= f.select :panel_provider_id,@panel_providers, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+      <tr>
+        <td>Country Code</td><td><%= f.text_field :country_code %></td>
+      </tr>
+
+    </table>
+    <button>Save</button>
+<% end %>

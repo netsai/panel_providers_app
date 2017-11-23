@@ -1,0 +1,18 @@
+<h3>Edit Location</h3>
+<% form_for :location, :url => { :action => 'update', :id => @location.id } do |f|%>
+    <table >
+      <tr>
+        <td>Name</td><td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Secret Code</td><td><%#= f.text_field :secret_code %></td>
+      </tr>
+      <tr>
+        <td>Location Group</td><td><%#= f.select :external_id,@location_groups, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+    </table>
+    <button>Update</button>
+    <tr>
+      <td><%= link_to "<< Back", "index" %> </td>
+    </tr>
+<% end %>

@@ -1,0 +1,5 @@
+
+
+<label >Country:</label>
+<%= select_tag "country_id" , options_for_select(@countries),
+               {:include_blank => true,:onchange => "submitCountryId(this.value)"  } %>

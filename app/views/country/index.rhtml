@@ -1,0 +1,30 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4>Countries</h4>
+    </caption>
+    <tr>
+      <th>Code</th>
+      <th>Panel Provider</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+    <% if @countries && @countries.count == 0 %>
+        <tr>
+          <td colspan="7">There are no countries</td>
+        </tr>
+    <% else
+         @countries.each do |country| %>
+            <tr>
+              <td><%= country.country_code %></td>
+              <td><%#= link_to country.panel_provider, "panel_provider/edit" %> </td>
+              <td><%= link_to "edit", "country/edit" %> </td>
+              <td><%= link_to "delete", "country/delete" %> </td>
+            </tr>
+        <% end
+    end %>
+    <tr>
+      <td><%= link_to "add new country", "new" %> </td>
+    </tr>
+  </table>
+</div>

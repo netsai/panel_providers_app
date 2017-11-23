@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<script type="text/javascript">
+
+			function get_prices(){
+			
+				var doc = document;
+				var panel1_price = count_letter(doc);
+				var panel2_price = count_arrays(doc);
+				var panel3_price = count_nodes(doc.getElementById("main"),0)/100;
+
+				doc.getElementById("panel1_price").value = panel1_price;
+				doc.getElementById("panel2_price").value = panel2_price;
+				doc.getElementById("panel3_price").value = panel3_price;
+				doc.getElementById("result").innerHTML += " Panel 1 Price : " + panel1_price + "; Panel 2 Price : " + panel2_price + "; Panel 3 Price : " + panel3_price  + ";";
+
+				alert('DONE!');
+			}
+			
+			function count_letter(parent) {
+				var count = 0;
+				var price = 0;
+				var text = parent.body.textContent.toLowerCase();
+				var letters = text.match(/a/gi)
+				if (letters) {
+					count = letters.length
+					price = count / 100;
+				}
+				return price;
+			}.
+			
+			function count_arrays(parent) {
+				var count = 0;
+				var price = 0;
+				var text = parent.body.textContent.toLowerCase();
+				var arrays = text.match(/q/gi)
+				if (arrays) {
+					count = arrays.length
+					price = count;
+				}
+				return price;
+			}
+						
+			function count_nodes(parent,tot_count){
+				var node = parent.firstChild;
+				var count = 0;
+				while(node && node != parent){
+					count ++;
+					tot_count = count;
+					tot_count += count_nodes(node,count);
+					node = node.nextSibling;
+				}
+				return tot_count;
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<form name = 'form1' onsubmit="get_prices();">
+			
+			<div id="result"> Prices : </div>
+			<div id="main"> 
+				<table>
+					<tr>
+						<td >Panel 1 Price </td>
+						<td >
+							<input type='text' name='panel1_price' id='panel1_price' size=4' />
+						</td>
+					</tr>
+					<tr>
+						<td >Panel 2 Price</td>
+						<td >
+							<input type='text' name='panel2_price' id='panel2_price' size=4' />
+						</td>
+					</tr>
+					<tr>
+						<td >Panel 3 Price</td>
+						<td >
+							<input type='text' name='panel3_price' id='panel3_price' size=4' />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type='submit' />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+		
+	</body>
+	
+</html>

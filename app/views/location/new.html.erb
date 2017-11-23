@@ -1,0 +1,25 @@
+<h3>Add a new Location</h3>
+<% form_for :location, :url => { :action => 'create' } do |f|%>
+    <table >
+      <tr>
+        <td>Country</td>
+        <td>
+         <% #TODO: default value of dropdown on onclick%>
+          <%= select_tag 'country_id', options_for_select(@countries.unshift(''), @country),{:selected=>@country, :include_blank => true,
+                         :onchange => "self.location=self.location+'?country_id='+this.options[this.selectedIndex].value"}%>
+        </td>
+      </tr>
+      <tr>
+        <td>Location group</td>
+        <td><%= select_tag 'location_group_id', options_for_select(@location_groups.unshift(''), @location_group), :include_blank => true%>
+        </td>
+      </tr>
+      <tr>
+        <td>Name</td><td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Secret Code</td><td><%= f.text_field :secret_code %></td>
+      </tr>
+    </table>
+    <button>Save</button>
+<% end %>

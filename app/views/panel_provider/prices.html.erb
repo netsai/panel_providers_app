@@ -1,0 +1,51 @@
+<html>
+<head>
+
+</head>
+
+<body>
+<%# form_tag '/panel_provider/get_panel_prices' do -%>
+    <form name = 'form1' action='/panel_provider/show_panel_price' >
+  <div id="result"> Prices : </div>
+  <div id="main">
+    <%= hidden_field_tag :id, @panel_provider.id %>
+    <table>
+      <tr>
+        <td >Panel Provider: </td>
+        <td >
+          <label :id="panel_provider" ></label><td><%z=@panel_provider.code  %></td>
+        </td>
+      </tr>
+      <tr>
+        <td >Country</td>
+        <td >
+          <%= select_tag "country_id" , options_for_select(@countries),
+                         {:include_blank => true,:onchange => "get_prices(this.value)" ,:width=>4 } %>
+        </td>
+      </tr>
+      <tr>
+        <td >Target group</td>
+        <td >
+          <%= select_tag "target_group_id" , options_for_select(@target_groups),
+                         {:include_blank => true,:onchange => "get_prices(this.value)" ,:width=>4 } %>
+        </td>
+      </tr>
+      <tr>
+        <td >Location</td>
+        <td >
+          <%= select_tag "location" , options_for_select(@locations),
+                         {:include_blank => true,:onchange => "get_prices(this.value)" ,:width=>4 } %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input value="Get price"  type='submit' />
+        </td>
+      </tr>
+    </table>
+  </div></form>
+<%# end %>
+</body>
+
+
+</html>

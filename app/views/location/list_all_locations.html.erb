@@ -1,0 +1,36 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4>Locations</h4>
+    </caption>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th>Location Group</th>
+      <th>Secret Code</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+    <% if @locations && @locations.count == 0 %>
+        <tr>
+          <td colspan="7">There are no locations</td>
+        </tr>
+    <% else
+         @locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%= link_to location.country, {:controller => "panel_provider", :action => "list_location_panel_providers", :country => location.country},:popup => ['new_window_name', 'height=300,width=600'] %></td>
+
+              <td><%= link_to location.location_group, {:controller => "panel_provider", :action => "list_location_group_panel_providers", :location_group => location.location_group},:popup => ['new_window_name', 'height=300,width=600'] %></td>
+
+              <td><%= location.secret_code %></td>
+              <td><%= link_to "edit", "location/edit" %> </td>
+              <td><%= link_to "delete", "location/delete" %> </td>
+            </tr>
+        <% end
+    end %>
+    <tr>
+      <td><%= link_to "add new location", "new" %> </td>
+    </tr>
+  </table>
+</div>

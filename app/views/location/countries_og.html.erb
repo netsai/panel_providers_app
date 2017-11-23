@@ -1,0 +1,28 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4>Countries</h4>
+    </caption>
+    <tr>
+      <th>Country</th>
+      <th>Panel Provider</th>
+    </tr>
+    <% if @countries && @countries.count == 0 %>
+
+    <% else
+         @countries.each do |country| %>
+            <tr>
+              <td><%= link_to country.country_code, {:controller => "location", :action => "list_country_location", :country =>  country.country_code},:popup => ['new_window_name', 'height=300,width=600'] %></td>
+
+              <td><%= country.code%><%#= country.panel_provider.code%></td>
+
+
+            </tr>
+        <% end
+           end %>
+    <tr>
+      <td><%= link_to "add new country", {:controller => "country", :action => "new"},:popup => ['new_window_name', 'height=300,width=600'] %></td>
+
+    </tr>
+  </table>
+</div>

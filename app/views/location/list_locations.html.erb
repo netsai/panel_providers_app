@@ -1,0 +1,27 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4>Locations</h4>
+    </caption>
+    <tr>
+      <th>Name</th>
+      <th>location_group</th>
+      <th>Country</th>
+    </tr>
+    <% if @locations && @locations.count == 0 %>
+        <tr>
+          <td colspan="7">There are no locations</td>
+        </tr>
+    <% else
+         @locations.each do |location| %>
+            <tr>
+              <td><%= location.name %></td>
+              <td><%#= location.location_location_group.location_group.name %></td>
+              <td><%#= location.location_location_group.location_group.country.country_code %></td>
+            </tr>
+        <% end
+    end %>
+    <tr>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<h3>Add a new Location Group</h3>
+<% form_for :location_group, :url => { :action => 'create'} do |f|%>
+    <table >
+      <tr>
+        <td>Name</td><td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Country</td><td><%= f.select :country_id,@countries, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+      <tr>
+        <td>Panel Provider</td><td><%= f.select :panel_provider_id,@panel_providers, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+    </table>
+    <button>Save</button>
+<% end %>

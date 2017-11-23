@@ -1,0 +1,82 @@
+<script>
+
+    function submitPanelProviderId(str) {
+
+        var panelproviderId = str;
+
+        $.ajax({
+            type: 'GET',
+            url: '/target_group/add_countries',
+           data: 'panel_provider_id='+panelproviderId,
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (response) {
+                //alert("i am here");
+                console.log(response);
+                var countries = response["countries"];
+                $("#country_id").empty();
+                $("#country_id").append('<option>Select country</option>');
+                for(var i=0; i< countries.length; i++){
+                    $("#country_id").append('<option value="' + countries[i]["id"] + '">' + countries[i]["country_code"] + '</option>');
+                }
+            }
+
+
+        });
+    }
+
+    function submitCountryId(str) {
+        var countryId = str;
+        $.ajax({
+            type: 'GET',
+            url: '/target_group/add_target_groups',
+            data: 'country_id='+countryId,
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (response) {
+
+                console.log(response);
+                var target_groups = response["target_groups"];
+                for(var i=0; i< target_groups.length; i++){
+                    //alert(target_groups[i]["name"]);
+                    var target_group = target_groups[i]["name"]
+                    var markup = "<tr><td>" + target_group + "</td></tr>";
+                    $("table tbody").append(markup);
+                }
+            }
+        });
+    }
+
+</script>
+
+
+
+<%= form_for :target_group do |f| %>
+
+      <label >Panel Provider:</label>
+      <%= select_tag "panel_provider_id" , options_for_select(@panel_providers),
+                   {:include_blank => true,:onchange => "submitPanelProviderId(this.value)"  } %>
+
+    <hr/>
+
+    <label >Country:</label>
+    <%= select_tag "country_id" , options_for_select(@countries),
+                   {:include_blank => true,:onchange => "submitCountryId(this.value)"  } %>
+    <hr/>
+
+    <div id="target_group_container">
+      <table >
+      <tr>
+        <th>Target groups</th>
+      </tr>
+        <% @target_groups.each do |tg| %>
+            <tr>
+              <td><%= tg[0] %></td>
+            </tr>
+        <%end%>
+      </table>
+    </div>
+
+<% end %>

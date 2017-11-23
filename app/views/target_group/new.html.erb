@@ -1,0 +1,19 @@
+<h3>Add a new Target Group</h3>
+<% form_for :target_group, :url => { :action => 'create' } do |f|%>
+    <table >
+      <tr>
+        <td>Parent Target Group</td><td><%= f.select :parent_id,@parent_target_groups, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+      <tr>
+        <td>Panel Provider</td><td><%= f.select :panel_provider_id,@panel_providers, :prompt => '&lt;empty&gt;' %></td>
+      </tr>
+      <tr>
+        <td>Name</td><td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Secret Code</td><td><%= f.text_field :secret_code %></td>
+      </tr>
+
+    </table>
+    <button>Save</button>
+<% end %>

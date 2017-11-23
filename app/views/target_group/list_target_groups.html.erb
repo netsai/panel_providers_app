@@ -1,0 +1,29 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4><%= @country%> Target Groups</h4>
+    </caption>
+    <tr>
+      <th>Name</th>
+      <th>Panel Provider</th>
+    </tr>
+    <% if @target_groups && @target_groups.count == 0 %>
+        <tr>
+          <td colspan="7">There are no target groups</td>
+        </tr>
+    <% else
+         @target_groups.each do |target_group| %>
+            <tr>
+              <td>
+
+              </td>
+            </tr>
+            <tr>
+              <td><%= target_group.name %></td>
+              <td><%#= target_group.panel_provider.code %> </td>
+            </tr>
+        <% end
+    end %>
+
+  </table>
+</div>

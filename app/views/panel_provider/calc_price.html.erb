@@ -1,0 +1,39 @@
+<html>
+<script>
+
+    
+    function get_prices(key) {
+        page_content = open(" http://time.com").read
+        page_body = page_content.scan(/<body>(.*)<\/body>/i).first
+
+        var pattern = new RegExp(key,"gi");
+        var match = document.body.textContent.match(pattern);
+        if (match === null){return 0;}
+        else {return match.length}
+
+    }
+</script>
+
+<body>
+<form name = 'form1' onsubmit="get_prices();">
+
+  <div id="result"> Prices : </div>
+  <div id="main">
+    <table>
+      <tr>
+        <td >Panel 1 Price </td>
+        <td >
+          <input type='text' name='panel1_price' id='panel1_price' size=4' />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type='submit' />
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<div >
+  <table class="table table-bordered table-striped">
+    <caption>
+      <h4>Location Groups</h4>
+    </caption>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th>Panel Provider</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+    <% if @location_groups && @location_groups.count == 0 %>
+        <tr>
+          <td colspan="7">There are no location groups</td>
+        </tr>
+    <% else
+         @location_groups.each do |location_group| %>
+            <tr>
+              <td><%= location_group.name %></td>
+              <td><%= link_to location_group.country, "country/edit" %> </td>
+              <td><%= link_to location_group.panel_provider, "panel_provider/edit" %> </td>
+              <td><%= link_to "edit", "location_group/edit" %> </td>
+              <td><%= link_to "delete", "location_group/delete" %> </td>
+            </tr>
+        <% end
+    end %>
+    <tr>
+      <td><%= link_to "add new location group", "new" %> </td>
+    </tr>
+  </table>
+</div>

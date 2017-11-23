@@ -1,0 +1,119 @@
+<form name = 'form1'  > <%# action='/panel_provider/show_panel_price'%>
+
+  <label >Panel Provider:</label>
+  <%= select_tag "panel_provider_id" , options_for_select(@panel_providers),
+                 {:include_blank => true,:onchange => "submitPanelProviderId(this.value)"  } %>
+
+  <hr/>
+
+    <label >Target Group:</label>
+    <%= select_tag "target_group_id" , options_for_select(@target_groups),
+                   {:include_blank => true,:onchange => "submitTargetGroupId(this.value)"  } %>
+
+    <hr/>
+
+    <label >Country:</label>
+    <%= select_tag "country_id" , options_for_select(@countries),
+                   {:include_blank => true,:onchange => "submitCountryId(this.value)"  } %>
+    <hr/>
+
+  <label >Location:</label>
+  <%=  select_tag "location_id", options_for_select(@locations.collect {|p| [ p['name'], p['id'] ] })%>
+
+  <hr/>
+
+  <input value="Get price"  type='submit' onclick="getFormData()"/>
+
+
+
+</form>
+
+
+<script>
+
+    function submitPanelProviderId(str) {
+
+        var panelproviderId = str;
+
+        $.ajax({
+            type: 'GET',
+            url: '/panel_provider/add_countries_target_groups',
+            data: 'panel_provider_id='+panelproviderId,
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (response) {
+                //alert("i am here");
+                console.log(response);
+                var countries = response["countries"];
+
+                $("#country_id").empty();
+                $("#country_id").append('<option>Select country</option>');
+                for(var i=0; i< countries.length; i++){
+                    $("#country_id").append('<option value="' + countries[i]["id"] + '">' + countries[i]["country_code"] + '</option>');
+                }
+
+                var target_groups = response["target_groups"];
+                $("#target_group_id").empty();
+                $("#target_group_id").append('<option>Select target group</option>');
+                for(var i=0; i< target_groups.length; i++){
+                    $("#target_group_id").append('<option value="' + target_groups[i]["id"] + '">' + target_groups[i]["name"] + '</option>');
+                }
+                 }
+        });
+    }
+
+    function getFormData(){
+        var panel_provider_id=document.getElementById('panel_provider_id').value;
+        //alert(panel_provider_id);
+        $.ajax({
+            type: 'POST',
+            url: '/panel_provider/get_panel_price',
+            data: 'panel_provider_id='+panel_provider_id,
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (response) {
+
+                //console.log(response);
+                var price = response["price"];
+                alert("Price is " + price);
+                //alert(" PRICE is:" + price)
+                //$( "#price" ).append("<div><label for='price'>price</label></div>")
+            }
+        });
+    }
+
+    function submitCountryId(str) {
+        var countryId = str;
+        $.ajax({
+            type: 'GET',
+            url: '/panel_provider/add_locations',
+            data: 'country_id='+countryId,
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+            success: function (response) {
+
+                console.log(response);
+                var locations = response["locations"];
+                for(var i=0; i< locations.length; i++){
+                    //alert(locations[i]["name"]);
+
+
+                    var locations = response["locations"];
+                    $("#location_id").empty();
+                    $("#location_id").append('<option>Select location</option>');
+                    for(var i=0; i< locations.length; i++){
+                        $("#location_id").append('<option value="' + locations[i]["id"] + '">'+ "id:" + locations[i]["id"] + " " + "name:"  + locations[i]["name"] + '</option>');
+                    }
+                }
+            }
+        });
+    }
+
+
+
+</script>
+
+
